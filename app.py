@@ -93,13 +93,13 @@ else:
         .mark_line()
         .encode(
             x=alt.X("TANGGAL:T", title="Tanggal"),
-            y=alt.Y("Scaled:Q"),
+            y=alt.Y("Scaled:Q", title="Nilai"),
             color=alt.Color("Metrik:N", title="Metrik"),
             tooltip=[
                 alt.Tooltip("TANGGAL:T", title="Tanggal"),
                 alt.Tooltip("Metrik:N", title="Metrik"),
                 alt.Tooltip("Raw:Q", title="Nilai Asli", format=",.0f"),
-                alt.Tooltip("Scaled:Q", format=".2f"),
+                alt.Tooltip("Scaled:Q", title="Nilai", format=".2f"),
             ],
         )
         .interactive()
@@ -119,3 +119,4 @@ buf = io.BytesIO()
 fig.savefig(buf, format="png", bbox_inches="tight", dpi=200); buf.seek(0)
 
 st.download_button("⬇️ Download Grafik", data=buf, file_name="grafik_live_topker.png", mime="image/png")
+
